@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-demo
+  labels:
+    name: pod-demo
+spec:
+  containers:
+    - name: pod-demo
+      image: yemax/pod-demo:1
+      ports:
+      - containerPort: 8081
