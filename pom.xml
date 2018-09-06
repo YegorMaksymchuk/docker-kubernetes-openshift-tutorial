@@ -24,6 +24,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <version.openshift-client>4.0.3</version.openshift-client>
         <java.version>1.8</java.version>
     </properties>
 
@@ -42,6 +43,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.fabric8</groupId>
+            <artifactId>openshift-client</artifactId>
+            <version>${version.openshift-client}</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
