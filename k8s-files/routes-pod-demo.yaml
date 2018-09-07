@@ -1,0 +1,31 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  creationTimestamp: 2018-09-07T17:42:54Z
+  labels:
+    app: pod-demo
+  name: pod-demo
+  namespace: qa-fest-2018
+  resourceVersion: "1884"
+  selfLink: /apis/route.openshift.io/v1/namespaces/qa-fest-2018/routes/pod-demo
+  uid: 733e77f7-b2c5-11e8-a920-54e1ad4b0979
+spec:
+  host: pod-demo-qa-fest-2018.127.0.0.1.nip.io
+  port:
+    targetPort: 8081-tcp
+  to:
+    kind: Service
+    name: pod-demo
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    - lastTransitionTime: 2018-09-07T17:42:54Z
+      status: "True"
+      type: Admitted
+    host: pod-demo-qa-fest-2018.127.0.0.1.nip.io
+    routerName: router
+    wildcardPolicy: None

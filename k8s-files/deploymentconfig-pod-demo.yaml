@@ -1,0 +1,81 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: 2018-09-07T17:42:41Z
+  generation: 1
+  labels:
+    app: pod-demo
+  name: pod-demo
+  namespace: qa-fest-2018
+  resourceVersion: "1867"
+  selfLink: /apis/apps.openshift.io/v1/namespaces/qa-fest-2018/deploymentconfigs/pod-demo
+  uid: 6b44cd41-b2c5-11e8-a920-54e1ad4b0979
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: pod-demo
+    deploymentconfig: pod-demo
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        app: pod-demo
+        deploymentconfig: pod-demo
+    spec:
+      containers:
+      - image: yemax/pod-demo:1
+        imagePullPolicy: IfNotPresent
+        name: pod-demo
+        ports:
+        - containerPort: 8081
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: 2018-09-07T17:42:44Z
+    lastUpdateTime: 2018-09-07T17:42:44Z
+    message: Deployment config has minimum availability.
+    status: "True"
+    type: Available
+  - lastTransitionTime: 2018-09-07T17:42:45Z
+    lastUpdateTime: 2018-09-07T17:42:45Z
+    message: replication controller "pod-demo-1" successfully rolled out
+    reason: NewReplicationControllerAvailable
+    status: "True"
+    type: Progressing
+  details:
+    causes:
+    - type: ConfigChange
+    message: config change
+  latestVersion: 1
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  unavailableReplicas: 0
+  updatedReplicas: 1
