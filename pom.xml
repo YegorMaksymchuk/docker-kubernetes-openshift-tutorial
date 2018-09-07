@@ -27,14 +27,17 @@
         <version.openshift-client>4.0.3</version.openshift-client>
         <junit.jupiter.version>5.0.0-M4</junit.jupiter.version>
         <junit.platform.version>1.0.0-M4</junit.platform.version>
+        <assertj.version>3.11.1</assertj.version>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -65,6 +68,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

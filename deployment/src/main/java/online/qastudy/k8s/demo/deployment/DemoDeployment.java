@@ -7,8 +7,12 @@ import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.openshift.api.model.*;
 import io.fabric8.openshift.client.OpenShiftClient;
 
+import java.text.Collator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class DemoDeployment {
 
@@ -49,7 +53,7 @@ public class DemoDeployment {
     }
 
     // oc new-app yemax/pod-demo:1 --name=pod-demo
-    public DemoDeployment deployAndRunPod() {
+    public DemoDeployment deployPod() {
         String namespace = ocClient.getNamespace();
         System.out.println("Namespace is: " + namespace);
         ServiceAccount podDemo = new ServiceAccountBuilder().withNewMetadata().withName("pod-demo").endMetadata().build();
@@ -107,7 +111,7 @@ public class DemoDeployment {
     }
 
     // oc expose svc/pod-demo-oc
-    public DemoDeployment createService() {
+    public DemoDeployment deployService() {
         Map<String, String> serviceSelector = new HashMap<>();
         serviceSelector.put("app", "pod-demo");
         serviceSelector.put("deploymentconfig", "pod-demo");
@@ -130,14 +134,6 @@ public class DemoDeployment {
                 .withSelector(serviceSelector)
                 .withType("ClusterIP").endSpec().done();
         return this;
-    }
-
-    private String getRoutURl(String appName) {
-        return ocClient.routes().inNamespace("qa-fest-2018").list().toString();
-    }
-
-    public void close() {
-        ocClient.close();
     }
 
     public DemoDeployment createRout() {
@@ -171,5 +167,16 @@ public class DemoDeployment {
                 .endStatus()
                 .done();
         return this;
+    }
+
+    public String getApplicationURL() {
+        return "http://"+ocClient.routes().list().getItems().stream()
+                .filter(route -> route.getMetadata().getName().toLowerCase().equals("pod-demo"))
+                .collect(Collectors.toList())
+                .get(0).getSpec().getHost();
+    }
+
+    public void close() {
+        ocClient.close();
     }
 }
