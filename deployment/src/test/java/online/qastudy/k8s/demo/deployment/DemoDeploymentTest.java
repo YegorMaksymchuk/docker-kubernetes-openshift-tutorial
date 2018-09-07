@@ -4,12 +4,14 @@ package online.qastudy.k8s.demo.deployment;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
+
+@RunWith(JUnitPlatform.class)
 public class DemoDeploymentTest {
-    DemoDeployment demoDeployment;
+    private DemoDeployment demoDeployment;
 
     @Before
     public void deploy() {demoDeployment = new DemoDeployment("qa-fest-2018");}
@@ -26,7 +28,4 @@ public class DemoDeploymentTest {
                     .createRout()
                     .getApplicationURL()).contains("qa-fest-2018").contains("pod-demo");
     }
-
-
-
 }

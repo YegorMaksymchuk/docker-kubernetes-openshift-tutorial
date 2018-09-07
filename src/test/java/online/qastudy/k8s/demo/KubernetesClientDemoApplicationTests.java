@@ -11,6 +11,7 @@ public class KubernetesClientDemoApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }
