@@ -40,3 +40,11 @@ oc logs <pod name>
 
 oc delete all -all
 
+oc delete project qa-fest-2018
+
+# Fabric8 Kubernetes (Openshift) client deployment demo
+
+
+cd deployment
+
+mvn test
