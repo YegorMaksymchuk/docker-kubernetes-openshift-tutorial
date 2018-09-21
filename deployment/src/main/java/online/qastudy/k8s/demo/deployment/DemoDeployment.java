@@ -62,7 +62,6 @@ public class DemoDeployment {
         podSelectors.put("app", "pod-demo");
         podSelectors.put("deploymentconfig", "pod-demo");
 
-        ocClient.serviceAccounts().inNamespace(namespace).createOrReplace(podDemo);
 
         ocClient.deploymentConfigs().inNamespace(namespace).createOrReplaceWithNew()
                 .withNewMetadata()
