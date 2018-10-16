@@ -14,7 +14,7 @@ public class DemoDeploymentTest {
     private DemoDeployment demoDeployment;
 
     @Before
-    public void deploy() {demoDeployment = new DemoDeployment("qa-fest-2018");}
+    public void deploy() {demoDeployment = new DemoDeployment("qmo-2018");}
 
     @After
     public void cleanup(){demoDeployment.close();}
@@ -22,10 +22,10 @@ public class DemoDeploymentTest {
     @Test
     public void testAppDeployment() {
         assertThat(demoDeployment.login()
-                    .createNewProject("qa-fest-2018", "Demo for QA Fest 2018", "Demo of Fabric8")
+                    .createNewProject("qmo-2018", "Demo for QMO 2018", "Demo of Fabric8")
                     .deployPod()
                     .deployService()
                     .createRout()
-                    .getApplicationURL()).contains("qa-fest-2018").contains("pod-demo");
+                    .getApplicationURL()).contains("qmo-2018").contains("pod-demo");
     }
 }
